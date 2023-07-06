@@ -1,8 +1,10 @@
 from flask import Flask, jsonify
-import json
 import random
+from flask_cors import CORS
+
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/generateProblems', methods=['GET'])
 def generateMath():
@@ -42,12 +44,12 @@ def generateMath():
         problems["multiplication"].append(f"{num1} * {num2} = {result}")
 
     # # Accessing the problems
-    addition_problems = problems["addition"]
+    # addition_problems = problems["addition"]
     # subtraction_problems = problems["subtraction"]
     # division_problems = problems["division"]
     # multiplication_problems = problems["multiplication"]
     
-    return jsonify(addition_problems)
+    return jsonify(problems)
 
 if __name__ == '__main__':
     app.run(debug=True, port=8001)

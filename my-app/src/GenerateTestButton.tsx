@@ -8,17 +8,16 @@ export const GenerateTestButton = () =>{
   const [data, setData] = useState(null);
 
   const fetchData = () => {
-    fetch('/generateProblems').then((response) => {
+    fetch('http://127.0.0.1:8001/generateProblems').then((response) => {
       if (response.ok) {
-        console.log(response.json());
         return response.json();
       } else {
         throw new Error('Request failed');
       }
     }).then((data) => {
+      console.log(data);
       setData(data);
     }).catch((error) => {
-      console.log(data)
       console.error(error);
     })
   };
