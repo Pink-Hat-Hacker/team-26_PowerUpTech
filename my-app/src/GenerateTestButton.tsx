@@ -24,17 +24,17 @@ export const GenerateTestButton = () =>{
   };
 
   return (
-    <Button
-      onClick={fetchData,}
-    >Get Data</Button>
-    // <div>
-    //   <button onClick={fetchData}>Get Data</button>
-    //   {data && (
-    //     <div>
-    //       <h2>Retrieved Data:</h2>
-    //       <pre>{JSON.stringify(data, null, 2)}</pre>
-    //     </div>
-    //   )}
-    // </div>
+    // <Button
+    //   onClick={fetchData,}
+    // >Get Data</Button>
+    <div>
+      <button onClick={fetchData}>Get Data</button>
+      {data && (
+        <div>
+          <h2>Retrieved Data:</h2>
+          <pre>{JSON.stringify(data, null, 2)}</pre>
+        </div>
+      )}
+    </div>
   );
 };
