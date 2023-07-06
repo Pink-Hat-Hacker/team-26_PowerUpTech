@@ -7,6 +7,8 @@ import {
   VStack,
   Code,
   Grid,
+  Flex,
+  Center,
   theme,
 } from "@chakra-ui/react"
 import { ColorModeSwitcher } from "./ColorModeSwitcher"
@@ -17,7 +19,27 @@ export const App = () => {
   return (
 
   <ChakraProvider theme={theme}>
-      <QuizPage></QuizPage>
+    <Flex
+      justifyContent="center"
+      alignItems="center"
+      minHeight="100vh"
+    >
+      <Box width="800px"
+        position="relative" 
+        height="500px" 
+        borderRadius="10px" 
+        display="flex"
+        alignItems="center"
+        justifyContent="center" 
+        backgroundColor="green"
+        boxShadow='dark-lg'
+      >
+        <Center>
+          <QuizPage></QuizPage>
+        </Center>
+        
+      </Box>
+    </Flex>
   </ChakraProvider>
 )
 }
