@@ -1,7 +1,7 @@
 from flask import Flask, jsonify
 import random
 from flask_cors import CORS
-
+from Students import Student
 
 app = Flask(__name__)
 CORS(app)
@@ -43,13 +43,64 @@ def generateMath():
         result = num1 * num2
         problems["multiplication"].append(f"{num1} * {num2} = {result}")
 
-    # # Accessing the problems
-    # addition_problems = problems["addition"]
-    # subtraction_problems = problems["subtraction"]
-    # division_problems = problems["division"]
-    # multiplication_problems = problems["multiplication"]
+    addition_problems = problems["addition"]
+    subtraction_problems = problems["subtraction"]
+    division_problems = problems["division"]
+    multiplication_problems = problems["multiplication"]
+
+    student = Student("Matthew Hansen", str(21), str(12))
+    test = []
+    answers = []
+
+    # create the students' test
+    def createTest():
+        add_iterator = int(student.add * 16)
+        for i in range(0, add_iterator):
+            problem = addition_problems[random.randint(0, 99)]
+            arr = problem.split(" = ")
+            question = arr[0]
+            answer = arr[1]
+            test.append(question)
+            answers.append(answer)
+        sub_iterator = int(student.subtract * 16)
+        for i in range(0, sub_iterator):
+            problem = subtraction_problems[random.randint(0, 99)]
+            arr = problem.split(" = ")
+            question = arr[0]
+            answer = arr[1]
+            test.append(question)
+            answers.append(answer)
+        mul_iterator = int(student.multi * 16)
+        for i in range(0, mul_iterator):
+            problem = multiplication_problems[random.randint(0, 99)]
+            arr = problem.split(" = ")
+            question = arr[0]
+            answer = arr[1]
+            test.append(question)
+            answers.append(answer)
+        div_iterator = int(student.div * 16)
+        for i in range(0, div_iterator):
+            problem = division_problems[random.randint(0, 99)]
+            arr = problem.split(" = ")
+            question = arr[0]
+            answer = arr[1]
+            test.append(question)
+            answers.append(answer)
+        if len(test) < 16:
+            for i in range(0, (16-len(test))):
+                problem = division_problems[random.randint(0, 99)]
+                arr = problem.split(" = ")
+                question = arr[0]
+                answer = arr[1]
+                test.append(question)
+                answers.append(answer)
+
+    createTest()
     
-    return jsonify(problems)
+    return jsonify({
+        "test": test,
+        "answers": answers
+    })
 
 if __name__ == '__main__':
     app.run(debug=True, port=8001)

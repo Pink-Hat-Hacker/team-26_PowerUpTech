@@ -33,14 +33,12 @@ export const QuizPage: React.FC<QuizPageProps>= ({data}:{data: any}) => {
   const [selectedOption, setSelectedOption] = useState('');
   const [score, setScore] = useState(0);
 
-  for (var key in data) {
-    console.log(key);
-    const parsedQuestion = data[key].map((problem: string) => ({
-      problem: problem.toString().substring(0, problem.toString().indexOf("=") - 1),
-      answer: problem.toString().slice(problem.toString().indexOf("=") + 1, problem.length)
-    }))
-    console.log(parsedQuestion);
-  }
+  const qs: Question[] = data.test.map((problem: string, index: number) => ({
+    id: index + 1,
+    problem: problem,
+    answer: data.answers[index]
+  }));
+  console.log(qs);
   
 
   const currentQuestion = questions[currentQuestionIndex];
