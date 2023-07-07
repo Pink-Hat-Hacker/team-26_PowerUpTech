@@ -82,6 +82,7 @@ export const QuizPage: React.FC<QuizPageProps>= ({data}:{data: any}) => {
         <Heading as="h3" size="md" mb={2}>
           Quiz Completed! Your Score: {score}/{questions.length}
         </Heading>
+        // Submit button needs array of input ans to send to PS.py
       )}
     </VStack>
   );
