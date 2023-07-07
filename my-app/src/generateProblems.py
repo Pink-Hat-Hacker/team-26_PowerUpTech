@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 import random
 from flask_cors import CORS
 from Students import Student
@@ -13,7 +13,7 @@ problems = {
     "multiplication": []
 }
 
-@app.route('/generateProblems', methods=['GET'])
+@app.route('/generateProblems', methods=['GET', 'POST'])
 def main():
     addition_problems = problems["addition"]
     subtraction_problems = problems["subtraction"]
@@ -116,7 +116,7 @@ def main():
             div_iterator = int(student.div * 16)
             for i in range(0, div_iterator):
                 problem = division_problems[random.randint(0, 99)]
-                arr = problem.split(" = ")
+                arr = problem.split("=")
                 question = arr[0]
                 answer = arr[1]
                 test.append(question)
@@ -129,7 +129,6 @@ def main():
                     answer = arr[1]
                     test.append(question)
                     answers.append(answer)
-    
 
     def updateTestScore(student_answers):
         add_score = 0
@@ -161,10 +160,12 @@ def main():
                 div_tot +=1
             else:
                 div_tot += 1
-        student.add = (add_score/add_tot)
-        student.subtract = (sub_score/sub_tot)
-        student.multi = (mult_score/mult_tot)
-        student.div = (div_score/div_tot)
+        add = (add_score/add_tot)
+        sub = (sub_score/sub_tot)
+        mult = (mult_score/mult_tot)
+        div = (div_score/div_tot)
+        Student.recordTest([add,sub,mult,div])
+        Student.adjust_personalTest()
             
     generateMath()
     createTest()
@@ -177,6 +178,15 @@ def main():
     # createTest()
     # print(test)
     # print(answers)
+    if request.method == 'POST':
+        # Get the input answers from the request body
+        input_answers = request.json.get('answers')
+        # Update the answers list with the input answers
+        answers = input_answers
+    else:
+        generateMath()
+        createTest()
+
     return jsonify({
         "test": test,
         "answers": answers
