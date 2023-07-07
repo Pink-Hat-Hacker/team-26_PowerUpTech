@@ -19,45 +19,13 @@ interface Question {
   answer: number;
 }
 
-const questions: Question[] = [
-  {
-    id: '1',
-    text: 'What is the result of 2 + 2?',
-    answer: 4,
-  },
-  {
-    id: '2',
-    text: 'What is the square root of 16?',
-    answer: 4,
-  },
-  {
-    id: '3',
-    text: 'What is the result of 2 + 2?',
-    answer: 4,
-  },
-  {
-    id: '4',
-    text: 'What is the result of 2 + 2?',
-    answer: 4,
-  },
-  {
-    id: '5',
-    text: 'What is the result of 2 + 2?',
-    answer: 4,
-  },
-  // Add more questions here
-];
-
 export const QuizPage: React.FC<QuizPageProps>= ({data}:{data: any}) => {
-    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-    const [userAnswers, setUserAnswers] = useState<string[]>([]);
-    const [formError, setFormError] = useState('');
-    const [score, setScore] = useState(0);
-    const [showFeedback, setShowFeedback] = useState(false);
-    const [wrongAnswers, setWrongAnswers] = useState<number[]>([]);
-
-
-
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [userAnswers, setUserAnswers] = useState<string[]>([]);
+  const [formError, setFormError] = useState('');
+  const [score, setScore] = useState(0);
+  const [showFeedback, setShowFeedback] = useState(false);
+  const [wrongAnswers, setWrongAnswers] = useState<number[]>([]);
 
   const questions: Question[] = data.test.map((problem: string, index: number) => ({
     id: index + 1,
