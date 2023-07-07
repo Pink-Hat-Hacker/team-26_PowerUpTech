@@ -6,10 +6,10 @@ import { Configuration, OpenAIApi,  } from 'openai';
 
 export const ChatBox: React.FC = () => {
 
-    const { Configuration, OpenAIApi } = require("openai");
+    
 
     const configuration = new Configuration({
-        apiKey: "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",
+        apiKey: "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",
     });
     const openai = new OpenAIApi(configuration);
 
@@ -23,18 +23,30 @@ export const ChatBox: React.FC = () => {
         //     n: 1,
         //     stop: ['\n'],
         //   });
+        
+
+        
         try {
-            const response = await openai.createChatCompletion({
-                model: "davinci",
-                messages: [{"role": "system", "content": "You are a helpful assistant."}, {role: "user", content: prompt}],
+            // const response = await openai.createChatCompletion({
+            //     model: "davinci",
+            //     messages: [{"role": "system", "content": "You are a helpful assistant."}, {role: "user", content: prompt}],
+            //   });
+
+              const response = await openai.createCompletion({
+                model: "text-davinci-003",
+                prompt: prompt,
+                max_tokens: 70,
+                temperature: 0,
               });
           
             // Extract and return the reply from the API response
-            const reply = response.choices?.[0]?.message?.content || '';
+            const reply = response.data.choices?.[0]?.text || '';
+            
+            
             return reply.trim();
 
         } catch (error: any) {
-            return "No connection test string test stringtest stringtest stringtest stringtest stringtest stringtest stringvvtest stringvtest stringvvtest string";
+            return "No connection, please try again later";
 
         }
 

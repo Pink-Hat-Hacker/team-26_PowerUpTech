@@ -8,6 +8,11 @@ import {ChatBox} from "../components/Chatbox"
 
 const MotionBox = motion(Box);
 
+interface QuizPageProps {
+  data: any;
+}
+
+
 interface Question {
   id: string;
   text: string;
@@ -43,7 +48,7 @@ const questions: Question[] = [
   // Add more questions here
 ];
 
-export const QuizPage: React.FC = () => {
+export const QuizPage: React.FC<QuizPageProps>= ({data}:{data: any}) => {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [userAnswers, setUserAnswers] = useState<string[]>([]);
     const [formError, setFormError] = useState('');
@@ -54,7 +59,15 @@ export const QuizPage: React.FC = () => {
 
 
 
-    const currentQuestion = questions[currentQuestionIndex];
+  const questions: Question[] = data.test.map((problem: string, index: number) => ({
+    id: index + 1,
+    text: "What is the result of " + problem + "?",
+    answer: Number(data.answers[index])
+  }));
+  console.log(questions);
+  
+
+  const currentQuestion = questions[currentQuestionIndex];
 
     const handleAnswerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const { value } = e.target;

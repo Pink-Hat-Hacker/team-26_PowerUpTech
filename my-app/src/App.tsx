@@ -2,11 +2,6 @@ import * as React from "react"
 import {
   ChakraProvider,
   Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
   Flex,
   Center,
   Img,
@@ -15,6 +10,8 @@ import {
 import { QuizPage } from "./pages/QuizPage"
 import backgroundImage from "./images/quizBgCrop.png";
 
+import { GenerateTestButton } from "./GenerateTestButton"
+// import { QuizPage } from "./pages/QuizPage"
 
 export const App = () => { 
   return (
@@ -38,7 +35,11 @@ export const App = () => {
         backgroundColor="white"
         boxShadow='dark-lg'
       >
-          <QuizPage></QuizPage>
+        <Center>
+          {<GenerateTestButton></GenerateTestButton>}
+          {/* <QuizPage></QuizPage> */}
+        </Center>
+        
       </Box>
     </Flex>
   </ChakraProvider>
