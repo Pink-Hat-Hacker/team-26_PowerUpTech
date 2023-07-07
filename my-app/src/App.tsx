@@ -2,18 +2,12 @@ import * as React from "react"
 import {
   ChakraProvider,
   Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
   Flex,
   Center,
   theme,
 } from "@chakra-ui/react"
-import { ColorModeSwitcher } from "./ColorModeSwitcher"
-import { Logo } from "./Logo"
-import { QuizPage } from "./pages/QuizPage"
+import { GenerateTestButton } from "./GenerateTestButton"
+// import { QuizPage } from "./pages/QuizPage"
 
 export const App = () => { 
   return (
@@ -35,7 +29,8 @@ export const App = () => {
         boxShadow='dark-lg'
       >
         <Center>
-          <QuizPage></QuizPage>
+          <GenerateTestButton></GenerateTestButton>
+          {/* <QuizPage></QuizPage> */}
         </Center>
         
       </Box>
