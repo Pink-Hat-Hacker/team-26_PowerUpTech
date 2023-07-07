@@ -7,38 +7,37 @@ interface QuizPageProps {
 
 interface Question {
   id: string;
-  text: string;
-  options: string[];
+  problem: string;
   answer: string;
 }
 
-const questions: Question[] = [
-  {
-    id: '1',
-    text: 'What is the capital of France?',
-    options: ['Paris', 'London', 'Berlin', 'Madrid'],
-    answer: 'Paris',
-  },
-  {
-    id: '2',
-    text: 'Who wrote the novel "Pride and Prejudice"?',
-    options: ['Jane Austen', 'Charles Dickens', 'Leo Tolstoy', 'Mark Twain'],
-    answer: 'Jane Austen',
-  },
-  // Add more questions here
-];
+// const questions: Question[] = [
+//   {
+//     id: '1',
+//     text: 'What is the capital of France?',
+//     options: ['Paris', 'London', 'Berlin', 'Madrid'],
+//     answer: 'Paris',
+//   },
+//   {
+//     id: '2',
+//     text: 'Who wrote the novel "Pride and Prejudice"?',
+//     options: ['Jane Austen', 'Charles Dickens', 'Leo Tolstoy', 'Mark Twain'],
+//     answer: 'Jane Austen',
+//   },
+//   // Add more questions here
+// ];
 
 export const QuizPage: React.FC<QuizPageProps>= ({data}:{data: any}) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState('');
   const [score, setScore] = useState(0);
 
-  const qs: Question[] = data.test.map((problem: string, index: number) => ({
+  const questions: Question[] = data.test.map((problem: string, index: number) => ({
     id: index + 1,
     problem: problem,
     answer: data.answers[index]
   }));
-  console.log(qs);
+  // console.log(questions);
   
 
   const currentQuestion = questions[currentQuestionIndex];
@@ -64,9 +63,9 @@ export const QuizPage: React.FC<QuizPageProps>= ({data}:{data: any}) => {
       {currentQuestion ? (
         <>
           <Heading as="h3" size="md" mb={2}>
-            {currentQuestion.text}
+            {currentQuestion.problem}
           </Heading>
-          <RadioGroup value={selectedOption} onChange={setSelectedOption}>
+          {/* <RadioGroup value={selectedOption} onChange={setSelectedOption}>
             <VStack align="start">
               {currentQuestion.options.map((option) => (
                 <Radio key={option} value={option}>
@@ -74,7 +73,7 @@ export const QuizPage: React.FC<QuizPageProps>= ({data}:{data: any}) => {
                 </Radio>
               ))}
             </VStack>
-          </RadioGroup>
+          </RadioGroup> */}
           <Button colorScheme="blue" disabled={!selectedOption} onClick={handleNextQuestion}>
             Next Question
           </Button>
