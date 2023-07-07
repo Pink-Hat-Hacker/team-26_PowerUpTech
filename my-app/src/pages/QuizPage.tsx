@@ -10,8 +10,8 @@ const MotionBox = motion(Box);
 
 interface QuizPageProps {
   data: any;
+  setShowQuiz:  React.Dispatch<React.SetStateAction<boolean>>
 }
-
 
 interface Question {
   id: string;
@@ -19,7 +19,7 @@ interface Question {
   answer: number;
 }
 
-export const QuizPage: React.FC<QuizPageProps>= ({data}:{data: any}) => {
+export const QuizPage: React.FC<QuizPageProps>= ({data, setShowQuiz}) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [userAnswers, setUserAnswers] = useState<string[]>([]);
   const [formError, setFormError] = useState('');
@@ -72,7 +72,7 @@ export const QuizPage: React.FC<QuizPageProps>= ({data}:{data: any}) => {
     }
 
     const handleRegenrateQuiz = () => {
-
+        setShowQuiz(false);
     }
 
     const CustomScrollbarStyle = `

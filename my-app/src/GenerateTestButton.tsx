@@ -39,7 +39,7 @@ export const GenerateTestButton = () =>{
   return (
     <Box width="800px" height="500px"> 
       {!showQuiz &&  <Center><Button marginTop="200px" colorScheme="blue" onClick={handleButtonClick}>Start Standard Quiz</Button></Center>}
-      {showQuiz && <QuizPage data={data}/>}
+      {showQuiz && <QuizPage data={data} setShowQuiz={setShowQuiz}/>}
     </Box>
    
   );
