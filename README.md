@@ -17,4 +17,5 @@
   - The answers are sent to a python script where a percentage is generated for the different topics and based of that a new personalized test with new questions is sent to the student
   - This new quiz is created keeping in mind the topics the student struggled on - giving them more questions on that topic
 - This loop of personalized tests continue as long as the generate new test button is clicked
-
+# Link to the Presentation
+https://www.canva.com/design/DAFn4dC9xVM/dpY0ZvZWubSkc9rp9w0oqA/view?utm_content=DAFn4dC9xVM&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink
