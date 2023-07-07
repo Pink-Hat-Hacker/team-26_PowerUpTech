@@ -6,43 +6,15 @@ from Students import Student
 app = Flask(__name__)
 CORS(app)
 
+problems = {
+    "addition": [],
+    "subtraction": [],
+    "division": [],
+    "multiplication": []
+}
+
 @app.route('/generateProblems', methods=['GET'])
-def generateMath():
-    problems = {
-        "addition": [],
-        "subtraction": [],
-        "division": [],
-        "multiplication": []
-    }
-
-    # Generate 100 addition problems
-    for _ in range(100):
-        num1 = random.randint(1, 100)
-        num2 = random.randint(1, 100)
-        result = num1 + num2
-        problems["addition"].append(f"{num1} + {num2} = {result}")
-
-    # Generate 100 subtraction problems
-    for _ in range(100):
-        num1 = random.randint(1, 100)
-        num2 = random.randint(1, num1)
-        result = num1 - num2
-        problems["subtraction"].append(f"{num1} - {num2} = {result}")
-
-    # Generate 100 division problems
-    for _ in range(100):
-        result = random.randint(1, 100)
-        divisor = random.randint(1, 10)
-        dividend = result * divisor
-        problems["division"].append(f"{dividend} / {divisor} = {result}")
-
-    # Generate 100 multiplication problems
-    for _ in range(100):
-        num1 = random.randint(1, 10)
-        num2 = random.randint(1, 10)
-        result = num1 * num2
-        problems["multiplication"].append(f"{num1} * {num2} = {result}")
-
+def main():
     addition_problems = problems["addition"]
     subtraction_problems = problems["subtraction"]
     division_problems = problems["division"]
@@ -51,6 +23,35 @@ def generateMath():
     student = Student("Matthew Hansen", str(21), str(12))
     test = []
     answers = []
+
+    def generateMath():
+    # Generate 100 addition problems
+        for _ in range(100):
+            num1 = random.randint(1, 100)
+            num2 = random.randint(1, 100)
+            result = num1 + num2
+            problems["addition"].append(f"{num1} + {num2} = {result}")
+
+        # Generate 100 subtraction problems
+        for _ in range(100):
+            num1 = random.randint(1, 100)
+            num2 = random.randint(1, num1)
+            result = num1 - num2
+            problems["subtraction"].append(f"{num1} - {num2} = {result}")
+
+        # Generate 100 division problems
+        for _ in range(100):
+            result = random.randint(1, 100)
+            divisor = random.randint(1, 10)
+            dividend = result * divisor
+            problems["division"].append(f"{dividend} / {divisor} = {result}")
+
+        # Generate 100 multiplication problems
+        for _ in range(100):
+            num1 = random.randint(1, 10)
+            num2 = random.randint(1, 10)
+            result = num1 * num2
+            problems["multiplication"].append(f"{num1} * {num2} = {result}")
 
     # create the students' test
     def createTest():
@@ -94,9 +95,10 @@ def generateMath():
                 answer = arr[1]
                 test.append(question)
                 answers.append(answer)
-
-    createTest()
     
+    generateMath()
+    createTest()
+
     return jsonify({
         "test": test,
         "answers": answers
