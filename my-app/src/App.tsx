@@ -9,17 +9,21 @@ import {
   Grid,
   Flex,
   Center,
+  Img,
   theme,
 } from "@chakra-ui/react"
-import { ColorModeSwitcher } from "./ColorModeSwitcher"
-import { Logo } from "./Logo"
 import { QuizPage } from "./pages/QuizPage"
+import backgroundImage from "./images/quizBgCrop.png";
+
 
 export const App = () => { 
   return (
 
   <ChakraProvider theme={theme}>
     <Flex
+    backgroundImage={`url(${backgroundImage})`}
+    bgSize="100%"
+
       justifyContent="center"
       alignItems="center"
       minHeight="100vh"
@@ -29,15 +33,12 @@ export const App = () => {
         height="500px" 
         borderRadius="10px" 
         display="flex"
-        alignItems="center"
-        justifyContent="center" 
-        backgroundColor="green"
+        alignItems="top"
+        justifyContent="top" 
+        backgroundColor="white"
         boxShadow='dark-lg'
       >
-        <Center>
           <QuizPage></QuizPage>
-        </Center>
-        
       </Box>
     </Flex>
   </ChakraProvider>
