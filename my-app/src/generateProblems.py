@@ -47,6 +47,8 @@ answers = []
 
 # create the students' test
 def createTest():
+    test.clear()
+    answers.clear()
     add_iterator = int(student.add * 16)
     for i in range(0, add_iterator):
         problem = addition_problems[random.randint(0, 99)]
@@ -88,6 +90,13 @@ def createTest():
             test.append(question)
             answers.append(answer)
 
+createTest()
+student.recordTest([0.9,0.9,0.5,0.5])
+student.adjust_personalTest()
+student.toString()
+student.recordTest([0.9,0.9,0.5,0.5])
+student.adjust_personalTest()
+student.toString()
 createTest()
 print(test)
 print(answers)

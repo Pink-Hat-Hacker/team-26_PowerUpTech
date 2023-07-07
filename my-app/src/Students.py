@@ -43,6 +43,7 @@ class Student:
             self.add -= removed
             self.subtract -= removed
             self.multi -= removed
+        
         return
 
     def findMins(self, lst):
@@ -75,6 +76,16 @@ class Student:
             self.changePercentages(lst[1], 0.2)
         elif self.testScores[len(self.testScores) - 1][lst[1]] < 0.55:
             self.changePercentages(lst[1], 0.3)
+
+        if self.add < 0:
+            self.add = 0
+        if self.subtract < 0:
+            self.subtract = 0
+        if self.multi < 0:
+            self.multi = 0
+        if self.div < 0:
+            self.div = 0
+        
         return
 
 # MatthewHansen = Student("Matthew Hansen", str(21), str(12))
