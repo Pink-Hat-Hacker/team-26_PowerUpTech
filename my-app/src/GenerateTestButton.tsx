@@ -1,4 +1,4 @@
-import { Button } from "@chakra-ui/react";
+import { Button, Box, Center} from "@chakra-ui/react";
 import { QuizPage } from "./pages/QuizPage"
 import { useEffect, useState } from "react"
 // import {
@@ -37,10 +37,10 @@ export const GenerateTestButton = () =>{
   
 
   return (
-    <div> 
-      {!showQuiz && <Button onClick={handleButtonClick}>Start Standard Quiz</Button>}
+    <Box width="800px" height="500px"> 
+      {!showQuiz &&  <Center><Button marginTop="200px" colorScheme="blue" onClick={handleButtonClick}>Start Standard Quiz</Button></Center>}
       {showQuiz && <QuizPage data={data}/>}
-    </div>
+    </Box>
    
   );
 };
