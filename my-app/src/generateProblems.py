@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 import random
 from flask_cors import CORS
 from Students import Student
@@ -13,7 +13,7 @@ problems = {
     "multiplication": []
 }
 
-@app.route('/generateProblems', methods=['GET'])
+@app.route('/generateProblems', methods=['GET', 'POST'])
 def main():
     addition_problems = problems["addition"]
     subtraction_problems = problems["subtraction"]
@@ -96,8 +96,14 @@ def main():
                 test.append(question)
                 answers.append(answer)
     
-    generateMath()
-    createTest()
+    if request.method == 'POST':
+        # Get the input answers from the request body
+        input_answers = request.json.get('answers')
+        # Update the answers list with the input answers
+        answers = input_answers
+    else:
+        generateMath()
+        createTest()
 
     return jsonify({
         "test": test,
